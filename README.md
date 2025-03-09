@@ -1,22 +1,10 @@
 # Instructions for building and deploying
 
-First note that the steps below will terminate any existing upterm sessions.
-Please make sure no one is using it at the time you do this.
-
-
-In this repo run
+In this repo run the command below, to build a local image for testing
 
 ```
-docker build . -t flipstone/upterm:$(date --iso-8601)
-docker push flipstone/upterm:$(date --iso-8601)
+docker build . -t upterm:beta
 ```
 
-Note: Building the docker image will build the `master` branch of the `upterm`
-repo on GitHub. If you want to build a specific tag or revision then you will
-need to modify the Dockerfile.
-
-In the Atlantis repo run
-
-`./tf upterm apply -var "image=flipstone/upterm:$(date --iso-8601)"`
-
-Bingo bango, you're done
+Note: Pushing to main will trigger a Github Action worfklow that will create a new image,
+with the `latest` tag, and a date tag, in the format `YYYY-MM-DD`
